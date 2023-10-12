@@ -5,7 +5,8 @@ function Cart() {
 
 
     const [data, setData] = useState([])
-    let total = 0;
+    let [total, settotal] = useState(0);
+    let totala = 0;
 
     async function fetchData() {
         await fetch('http://localhost:3000')
@@ -13,14 +14,15 @@ function Cart() {
             .then(result => {
                 setData(result.data)
                 console.log(result.data)
-                total = 0;
+                totala = 0;
                 result.data.map((item) => (
                     (JSON.parse(window.localStorage.getItem(item.name)) !== null) ? (
-                        total += (item.price * JSON.parse(window.localStorage.getItem(item.name)).quantity)
+                        totala += (item.price * JSON.parse(window.localStorage.getItem(item.name)).quantity)
                     ) : (
                         console.log("hej")
                     )
                 ))
+                settotal(totala)
                 console.log(total)
             }).catch(err => {
                 console.log(err)
@@ -29,7 +31,7 @@ function Cart() {
     useEffect(() => {
         fetchData()
         console.log(data)
-    }, [])
+    }, [total])
 
 
     return (
