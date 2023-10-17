@@ -1,3 +1,6 @@
+
+import { Link } from 'react-router-dom';
+
 function putInCart(props) {
 
     let oldQuantity = 1;
@@ -24,11 +27,15 @@ function ProductCard(props) {
 
     return (
         <div>
-            <img src={props.image} alt="" />
+            <a href={"product/" + props.id} >
+                <img src={props.image} alt="" />
+            </a>
             <div className="produkt">
-                <b>{props.name}</b>
-                <p>{props.description}</p>
-                <p className="redText"> {props.price} kr</p>
+                <a href={"product/" + props.id} >
+                    <b>{props.name}</b>
+                    <p>{props.description}</p>
+                    <p className="redText"> {props.price} kr</p>
+                </a>
                 <button onClick={() => putInCart(props)}>Lägg till i korg</button>
             </div>
         </div>

@@ -1,19 +1,32 @@
 import ProductCard from '../components/productCard'
 import { useState, useEffect } from 'react'
+import { useParams } from "react-router-dom"
 
 function Products() {
 
     const [data, setData] = useState([])
+    const { id } = useParams();
 
     async function fetchData() {
-        await fetch('http://localhost:3000')
-            .then(res => res.json())
-            .then(result => {
-                setData(result.data)
-                console.log(result.data)
-            }).catch(err => {
-                console.log(err)
-            })
+        if (id != undefined) {
+            await fetch('http://localhost:3000/category/' + id)
+                .then(res => res.json())
+                .then(result => {
+                    setData(result.data)
+                    console.log(result.data)
+                }).catch(err => {
+                    console.log(err)
+                })
+        } else {
+            await fetch('http://localhost:3000')
+                .then(res => res.json())
+                .then(result => {
+                    setData(result.data)
+                    console.log(result.data)
+                }).catch(err => {
+                    console.log(err)
+                })
+        }
     }
     useEffect(() => {
         fetchData()
@@ -23,7 +36,7 @@ function Products() {
     return (
         <main>
             <section className="info">
-                <img src="kitten.png" alt="" width="300px" />
+                <img src="../kitten.png" alt="" width="300px" />
                 <div>
                     <h1>Produkter till katter och kattägare</h1>
                     <p>Här finns allt som behövs för katter och kattägare, vi har allt från drip till sängar</p>
@@ -35,7 +48,8 @@ function Products() {
                     {data.map((item) => (
                         < ProductCard
                             key={item.id}
-                            image={item.image}
+                            id={item.id}
+                            image={"../" + item.image}
                             name={item.name}
                             description={item.description}
                             price={item.price}

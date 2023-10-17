@@ -307,3 +307,12 @@ main h1 {
 .centerText {
   text-align: center;
 }
+
+.productButton {
+  color: black;
+}
+
+.productButtonDiv {
+  display: flex;
+  align-items: end;
+}

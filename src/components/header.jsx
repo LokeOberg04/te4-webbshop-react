@@ -9,7 +9,7 @@ function Header() {
             </nav>
             <section>
                 <a href="/#hem" className="headerFix1">
-                    <img src="PRIPSMALL.png" alt="" height="80px" />
+                    <img src="../PRIPSMALL.png" alt="" height="80px" />
                 </a>
             </section>
             <div>
