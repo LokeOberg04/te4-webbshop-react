@@ -315,4 +315,5 @@ main h1 {
 .productButtonDiv {
   display: flex;
   align-items: end;
+  margin-left: auto;
 }
