@@ -47,7 +47,7 @@ function Product() {
     return (
         <main>
             {data.map((item) => (
-                <section key={item.id} className="info">
+                <section key={item.id} className="oneProdukt">
                     <img src={"../" + item.image} alt="" width="300px" />
                     <div>
                         <h1>{item.name}</h1>

@@ -58,7 +58,7 @@ html {
 
 body {
   font-family: 'League Spartan', sans-serif;
-  background-color: var(--color-primary1);
+  background-color: #ffffff;
   color: var(--color-secondary);
   margin: 0;
   height: 100%;
@@ -182,18 +182,29 @@ main h1 {
 
 .produkter {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 25% 25% 25% 25%;
 }
 
 .produkter img {
-  width: 14rem;
+  width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
 }
 
+.produkter a {
+  display: block;
+  text-align: center;
+  background-color: var(--color-primary1);
+  margin: 5px;
+}
+
+.produktShadow {
+  box-shadow: #aaaaaa 0px 0px 5px;
+}
+
 .reviews {
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
 .reviews div {
@@ -211,9 +222,21 @@ main h1 {
   background-color: var(--color-tertiary1);
 }
 
+.oneProdukt {
+  display: flex;
+  padding: 0;
+  margin-top: 5rem;
+  background-color: var(--color-primary1);
+  box-shadow: #aaaaaa 0px 0px 5px;
+}
+
+.oneProdukt button {
+  margin: 5px;
+}
+
 .cartItem {
   display: grid;
-  grid-template-columns: auto 10% 10% 10%;
+  grid-template-columns: auto 10% 10% 15%;
 }
 
 .cartItem * {
@@ -236,6 +259,16 @@ main h1 {
 
 .produkt {
   text-align: center;
+}
+
+.produkt * {
+  margin: 5px;
+}
+
+.wProdukt {
+  background-color: var(--color-primary1);
+  margin: 5px;
+  box-shadow: #aaaaaa 0px 0px 5px;
 }
 
 .produkt button {

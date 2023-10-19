@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 function Homepage() {
     const [data, setData] = useState([])
 
+
+
     async function fetchData() {
         await fetch('http://localhost:3000')
             .then(res => res.json())
@@ -38,52 +40,46 @@ function Homepage() {
                 </div>
                 <main>
                     <section id="produkter" className="produkter">
-                        <a href="/products">
+                        <a href="/products/3" className="produktShadow">
                             <div>
                                 <img src="Smiling_Tan_Pomeranian.jpg" alt="" />
                                 <b>Hund kläder</b>
                             </div>
                         </a>
-                        <a href="/products">
+                        <a href="/products/1" className="produktShadow">
                             <div>
                                 <img src="white kitten.png" alt="" />
                                 <b>Katt kläder</b>
                             </div>
                         </a>
-                        <a href="/products">
+                        <a href="/products/2" className="produktShadow">
                             <div>
                                 <img src="igelkott.jpg" alt="" />
-                                <b>Hund leksaker</b>
+                                <b>Hattar</b>
                             </div>
                         </a>
-                        <a href="/products">
+                        <a href="/products/4" className="produktShadow">
                             <div>
                                 <img src="kattleksak.jpg" alt="" />
-                                <b>Katt leksaker</b>
+                                <b>Utekläder</b>
                             </div>
                         </a>
-                        <a href="/products">
+                        <a href="/products/5" className="produktShadow">
                             <div>
                                 <img src="hundMat.jpg" alt="" />
-                                <b>Hund mat</b>
+                                <b>Utkläddnad</b>
                             </div>
                         </a>
-                        <a href="/products">
+                        <a href="/products" className="produktShadow">
                             <div>
                                 <img src="catFood.jpeg" alt="" />
-                                <b>Katt mat</b>
-                            </div>
-                        </a>
-                        <a href="/products">
-                            <div>
-                                <img src="everClean.jpg" alt="" />
                                 <b>Övrigt</b>
                             </div>
                         </a>
                     </section>
                     <section>
                         <div className="mainFix1">
-                            <p>Se våra <b>4</b> omdömen på</p>
+                            <p>Se våra <b>42</b> omdömen på</p>
                             <img src="trustPilot.png" alt="" className="mainFix2" />
                         </div>
                         <div className="reviews">
@@ -112,20 +108,30 @@ function Homepage() {
                             <div>
                                 <img src="stars-5.svg" alt="" />
                                 <p>
-                                    &apos;Livin life, Stackin tear.&apos;
+                                    &apos;She was prolly thinking bout me. I was prolly thinking bout cheese.&apos;
                                 </p>
                                 <p>
-                                    - Ejden
+                                    - Lil Peep
                                 </p>
                             </div>
 
                             <div>
                                 <img src="stars-5.svg" alt="" />
                                 <p>
-                                    &apos;She was prolly thinking bout me. I was prolly thinking bout cheese.&apos;
+                                    &apos;De skjöt ihjäl min hund :/&apos;
                                 </p>
                                 <p>
-                                    - Lil Peep
+                                    - lycklig kund
+                                </p>
+                            </div>
+
+                            <div>
+                                <img src="stars-1.svg" alt="" />
+                                <p>
+                                    &apos;Lever livet, staplar tår.&apos;
+                                </p>
+                                <p>
+                                    - Ejden (kocken från Delicious pizza (mmmmm, gott))
                                 </p>
                             </div>
                         </div>

@@ -26,8 +26,8 @@ function putInCart(props) {
 function ProductCard(props) {
 
     return (
-        <div>
-            <a href={"product/" + props.id} >
+        <div className="wProdukt">
+            <a href={"/product/" + props.id} >
                 <img src={props.image} alt="" />
             </a>
             <div className="produkt">

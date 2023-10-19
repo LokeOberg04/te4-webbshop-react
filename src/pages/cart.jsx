@@ -37,7 +37,7 @@ function Cart() {
     return (
         <main>
             <section>
-                <ul>
+                <ul className="cartUl">
                     <li className="cartItem">
                         <div>
                             <p>Produkt</p>
@@ -60,11 +60,11 @@ function Cart() {
                             console.log("hej")
                         )
                     ))}
+                    <section className="checkout">
+                        <p>Total: <b className="fontweight500">{total}</b> kr</p>
+                        <button className="boton" onClick={() => { window.localStorage.clear(); location.reload() }}>Betala</button>
+                    </section>
                 </ul>
-            </section>
-            <section className="checkout">
-                <p>Total: <b className="fontweight500">{total}</b> kr</p>
-                <button className="boton" onClick={() => { window.localStorage.clear(); location.reload() }}>Betala</button>
             </section>
         </main>
     )

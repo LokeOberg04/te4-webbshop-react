@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom"
 function Products() {
 
     const [data, setData] = useState([])
+    const [category, setCategory] = useState(0)
+    const [categoryName, setCategoryName] = useState("alla")
     const { id } = useParams();
 
     async function fetchData() {
@@ -12,8 +14,11 @@ function Products() {
             await fetch('http://localhost:3000/category/' + id)
                 .then(res => res.json())
                 .then(result => {
-                    setData(result.data)
-                    console.log(result.data)
+                    setCategory(1);
+                    setCategoryName(result.data[0].name)
+                    console.log(categoryName)
+                    setData(result.data[0].items)
+                    console.log(result.data[0].items)
                 }).catch(err => {
                     console.log(err)
                 })
@@ -21,6 +26,7 @@ function Products() {
             await fetch('http://localhost:3000')
                 .then(res => res.json())
                 .then(result => {
+                    setCategory(0);
                     setData(result.data)
                     console.log(result.data)
                 }).catch(err => {
@@ -38,22 +44,34 @@ function Products() {
             <section className="info">
                 <img src="../kitten.png" alt="" width="300px" />
                 <div>
-                    <h1>Produkter till katter och kattägare</h1>
+                    <h1>Produkter till {categoryName}</h1>
                     <p>Här finns allt som behövs för katter och kattägare, vi har allt från drip till sängar</p>
                 </div>
             </section>
             <section>
-                <h1 className="centerText">produkter för Katter</h1>
+                <h1 className="centerText">produkter för {categoryName}</h1>
                 <div id="produkter" className="produkter">
                     {data.map((item) => (
-                        < ProductCard
-                            key={item.id}
-                            id={item.id}
-                            image={"../" + item.image}
-                            name={item.name}
-                            description={item.description}
-                            price={item.price}
-                        />
+                        (category == 0 ? (
+
+                            < ProductCard
+                                key={item.id}
+                                id={item.id}
+                                image={"../" + item.image}
+                                name={item.name}
+                                description={item.description}
+                                price={item.price}
+                            />
+                        ) : (
+                            < ProductCard
+                                key={item.item.id}
+                                id={item.item.id}
+                                image={"../" + item.item.image}
+                                name={item.item.name}
+                                description={item.item.description}
+                                price={item.item.price}
+                            />
+                        ))
                     ))}
                 </div>
             </section>
