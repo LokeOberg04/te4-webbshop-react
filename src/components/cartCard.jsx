@@ -1,5 +1,8 @@
-function CartCard(props) {
+import { CartContext } from "../components/cartContext";
+import { useContext } from 'react'
 
+function CartCard(props) {
+    const { removeFromCart } = useContext(CartContext);
 
     return (
         <div className="cartItem">
@@ -10,7 +13,7 @@ function CartCard(props) {
             <b>{props.quantity}</b>
             <p>{props.price} kr</p>
             <div>
-                <button onClick={() => { window.localStorage.removeItem(props.name); location.reload() }}>Remove item</button>
+                <button onClick={() => { removeFromCart(props) }}>Remove item</button>
             </div>
         </div>
     )

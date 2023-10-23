@@ -1,6 +1,7 @@
 import ProductCard from '../components/productCard'
-import { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
+import { CartContext } from "../components/cartContext";
+import { useState, useEffect, useContext } from 'react'
 
 function Products() {
 
@@ -16,9 +17,9 @@ function Products() {
                 .then(result => {
                     setCategory(1);
                     setCategoryName(result.data[0].name)
-                    console.log(categoryName)
+
                     setData(result.data[0].items)
-                    console.log(result.data[0].items)
+
                 }).catch(err => {
                     console.log(err)
                 })
@@ -28,7 +29,7 @@ function Products() {
                 .then(result => {
                     setCategory(0);
                     setData(result.data)
-                    console.log(result.data)
+
                 }).catch(err => {
                     console.log(err)
                 })
@@ -36,7 +37,6 @@ function Products() {
     }
     useEffect(() => {
         fetchData()
-        console.log(data)
     }, [])
 
     return (

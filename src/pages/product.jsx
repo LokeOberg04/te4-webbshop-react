@@ -1,5 +1,5 @@
-import ProductCard from '../components/productCard'
-import { useState, useEffect } from 'react'
+import { CartContext } from "../components/cartContext";
+import { useState, useEffect, useContext } from 'react'
 import { useParams } from "react-router-dom"
 
 function putInCart(props) {
@@ -7,7 +7,7 @@ function putInCart(props) {
     let oldQuantity = 1;
 
     let oldItem = JSON.parse(window.localStorage.getItem(props.name))
-    console.log(oldItem)
+
 
     if (oldItem !== null) {
         oldQuantity = oldItem.quantity + 1
@@ -20,11 +20,13 @@ function putInCart(props) {
         price: props.price,
         quantity: oldQuantity,
     }
-    console.log(item)
+
     window.localStorage.setItem(props.name, JSON.stringify(item))
 }
 
 function Product() {
+
+    const { addToCart } = useContext(CartContext);
 
     const [data, setData] = useState([])
     const { id } = useParams();
@@ -34,14 +36,14 @@ function Product() {
             .then(res => res.json())
             .then(result => {
                 setData(result.data)
-                console.log(result.data)
+
             }).catch(err => {
                 console.log(err)
             })
     }
     useEffect(() => {
         fetchData()
-        console.log(data)
+
     }, [])
 
     return (
@@ -54,7 +56,7 @@ function Product() {
                         <p>{item.description}</p>
                     </div>
                     <div className="productButtonDiv">
-                        <button className="productButton boton" onClick={() => putInCart(item)}>Lägg till i korg</button>
+                        <button className="productButton boton" onClick={() => addToCart(item)}>Lägg till i korg</button>
                     </div>
                 </section>
             ))}

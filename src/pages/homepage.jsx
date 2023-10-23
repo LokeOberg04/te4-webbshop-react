@@ -10,7 +10,7 @@ function Homepage() {
             .then(res => res.json())
             .then(result => {
                 setData(result.data)
-                console.log(result.data)
+
             }).catch(err => {
                 console.log(err)
             })

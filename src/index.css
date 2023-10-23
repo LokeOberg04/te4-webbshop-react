@@ -234,6 +234,12 @@ main h1 {
   margin: 5px;
 }
 
+.cartUl button {
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #A62A6C;
+}
+
 .cartItem {
   display: grid;
   grid-template-columns: auto 10% 10% 15%;

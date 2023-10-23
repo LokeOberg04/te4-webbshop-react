@@ -1,37 +1,42 @@
 import CartCard from '../components/cartCard'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { CartContext } from "../components/cartContext";
 
 function Cart() {
 
+    const cart = useContext(CartContext);
+    const { removeFromCart } = useContext(CartContext);
+
+    console.log(cart.cart)
 
     const [data, setData] = useState([])
     let [total, settotal] = useState(0);
     let totala = 0;
 
-    async function fetchData() {
-        await fetch('http://localhost:3000')
-            .then(res => res.json())
-            .then(result => {
-                setData(result.data)
-                console.log(result.data)
-                totala = 0;
-                result.data.map((item) => (
-                    (JSON.parse(window.localStorage.getItem(item.name)) !== null) ? (
-                        totala += (item.price * JSON.parse(window.localStorage.getItem(item.name)).quantity)
-                    ) : (
-                        console.log("hej")
-                    )
-                ))
-                settotal(totala)
-                console.log(total)
-            }).catch(err => {
-                console.log(err)
-            })
-    }
-    useEffect(() => {
-        fetchData()
-        console.log(data)
-    }, [total])
+    // async function fetchData() {
+    //     await fetch('http://localhost:3000')
+    //         .then(res => res.json())
+    //         .then(result => {
+    //             setData(result.data)
+
+    //             totala = 0;
+    //             result.data.map((item) => (
+    //                 (JSON.parse(window.localStorage.getItem(item.name)) !== null) ? (
+    //                     totala += (item.price * JSON.parse(window.localStorage.getItem(item.name)).quantity)
+    //                 ) : (
+    //                     null
+    //                 )
+    //             ))
+    //             settotal(totala)
+
+    //         }).catch(err => {
+    //             console.log(err)
+    //         })
+    // }
+    // useEffect(() => {
+    //     fetchData()
+
+    // }, [total])
 
 
     return (
@@ -45,24 +50,21 @@ function Cart() {
                         <p>Kvantitet</p>
                         <p>Pris</p>
                     </li>
-                    {data.map((item) => (
-                        (JSON.parse(window.localStorage.getItem(item.name)) !== null) ? (
-                            <li key={item.id}>
-                                < CartCard
-                                    image={item.image}
-                                    name={item.name}
-                                    description={item.description}
-                                    price={item.price}
-                                    quantity={JSON.parse(window.localStorage.getItem(item.name)).quantity}
-                                />
-                            </li>
-                        ) : (
-                            console.log("hej")
-                        )
-                    ))}
+                    {cart.cart.map((item, index) => (
+                        <li key={index}>
+                            < CartCard
+                                image={item.image}
+                                name={item.name}
+                                description={item.description}
+                                price={item.price}
+                                quantity={item.quantity}
+                            />
+                        </li>
+                    )
+                    )}
                     <section className="checkout">
                         <p>Total: <b className="fontweight500">{total}</b> kr</p>
-                        <button className="boton" onClick={() => { window.localStorage.clear(); location.reload() }}>Betala</button>
+                        <button onClick={() => { removeFromCart(...cart); location.reload() }}>Betala</button>
                     </section>
                 </ul>
             </section>
