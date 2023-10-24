@@ -17,13 +17,13 @@ export const CartContextProvider = ({ children }) => {
 
     const removeFromCart = (item) => {
         console.log("removing " + item.name)
-        const newCart = cart.filter((cartItem) => cartItem.id !== item.id);
+        const newCart = cart.filter((cartItem) => cartItem.name !== item.name);
         setCart(newCart);
     }
 
-    // const clearCart = () => {
-    //   setCart([]);
-    // }
+    const clearCart = () => {
+        setCart([]);
+    }
 
     // const isInCart = (item) => {
     //   return cart.some((cartItem) => cartItem.id === item.id);
@@ -33,43 +33,43 @@ export const CartContextProvider = ({ children }) => {
     //   return cart.reduce((acc, item) => acc + item.quantity, 0);
     // }
 
-    // const getTotalPrice = () => {
-    //   return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    // }
+    const getTotalPrice = () => {
+        return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    }
 
-    // const increaseQuantity = (item) => {
-    //   const newCart = cart.map((cartItem) => {
-    //     if (cartItem.id === item.id) {
-    //       return { ...cartItem, quantity: cartItem.quantity + 1 };
-    //     } else {
-    //       return cartItem;
-    //     }
-    //   });
-    //   setCart(newCart);
-    // }
+    const increaseQuantity = (item) => {
+        const newCart = cart.map((cartItem) => {
+            if (cartItem.id === item.id) {
+                return { ...cartItem, quantity: cartItem.quantity + 1 };
+            } else {
+                return cartItem;
+            }
+        });
+        setCart(newCart);
+    }
 
-    // const decreaseQuantity = (item) => {
-    //   const newCart = cart.map((cartItem) => {
-    //     if (cartItem.id === item.id) {
-    //       return { ...cartItem, quantity: cartItem.quantity - 1 };
-    //     } else {
-    //       return cartItem;
-    //     }
-    //   });
-    //   setCart(newCart);
-    // }
+    const decreaseQuantity = (item) => {
+        const newCart = cart.map((cartItem) => {
+            if (cartItem.id === item.id) {
+                return { ...cartItem, quantity: cartItem.quantity - 1 };
+            } else {
+                return cartItem;
+            }
+        });
+        setCart(newCart);
+    }
 
     return (
         <CartContext.Provider value={{
             cart,
             addToCart,
             removeFromCart,
-            // clearCart,
+            clearCart,
             // isInCart,
             // getTotalItems,
-            // getTotalPrice,
-            // increaseQuantity,
-            // decreaseQuantity
+            getTotalPrice,
+            increaseQuantity,
+            decreaseQuantity
         }}>
             {children}
         </CartContext.Provider>

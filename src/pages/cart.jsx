@@ -5,7 +5,7 @@ import { CartContext } from "../components/cartContext";
 function Cart() {
 
     const cart = useContext(CartContext);
-    const { removeFromCart } = useContext(CartContext);
+    const { clearCart } = useContext(CartContext);
 
     console.log(cart.cart)
 
@@ -13,30 +13,30 @@ function Cart() {
     let [total, settotal] = useState(0);
     let totala = 0;
 
-    // async function fetchData() {
-    //     await fetch('http://localhost:3000')
-    //         .then(res => res.json())
-    //         .then(result => {
-    //             setData(result.data)
+    async function fetchData() {
+        await fetch('http://localhost:3000')
+            .then(res => res.json())
+            .then(result => {
+                setData(result.data)
 
-    //             totala = 0;
-    //             result.data.map((item) => (
-    //                 (JSON.parse(window.localStorage.getItem(item.name)) !== null) ? (
-    //                     totala += (item.price * JSON.parse(window.localStorage.getItem(item.name)).quantity)
-    //                 ) : (
-    //                     null
-    //                 )
-    //             ))
-    //             settotal(totala)
+                totala = 0;
+                cart.cart.map((item) => (
+                    (JSON.parse(window.localStorage.getItem(item.name)) !== null) ? (
+                        totala += (item.price * JSON.parse(window.localStorage.getItem(item.name)).quantity)
+                    ) : (
+                        null
+                    )
+                ))
+                settotal(totala)
 
-    //         }).catch(err => {
-    //             console.log(err)
-    //         })
-    // }
-    // useEffect(() => {
-    //     fetchData()
+            }).catch(err => {
+                console.log(err)
+            })
+    }
+    useEffect(() => {
+        fetchData()
 
-    // }, [total])
+    }, [total])
 
 
     return (
@@ -64,7 +64,7 @@ function Cart() {
                     )}
                     <section className="checkout">
                         <p>Total: <b className="fontweight500">{total}</b> kr</p>
-                        <button onClick={() => { removeFromCart(...cart); location.reload() }}>Betala</button>
+                        <button onClick={() => { clearCart() }}>Betala</button>
                     </section>
                 </ul>
             </section>
