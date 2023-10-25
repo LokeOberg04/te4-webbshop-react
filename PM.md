@@ -72,7 +72,7 @@ app.get('/', async function (req, res) {
 })
 ```
 
-För att lägga till nya produkter i databasen så använders den här koden
+För att lägga till nya produkter i databasen så används den här koden
 
 ```
     const item = await prisma.item.create({
@@ -135,7 +135,7 @@ för att ladda in data från databasen så användes fetch metoden
     }, [])
 ```
 
-När jag har fått in datan så itererar jag över datan och gör kort för alal produkter
+När jag har fått in data så itererar jag över all data och gör kort för alla produkter
 
 ```
                 <div id="produkter" className="produkter">
@@ -151,9 +151,15 @@ När jag har fått in datan så itererar jag över datan och gör kort för alal
                     ))}
                 </div>
 ```
+Min landingpage blev väldigt bra, fin navbar och blev väldigt nöjd med heron.
+![Hemsidan](landingPage.png)
+När man skrollar ner från heron eller klickar på "utforska produkter"
+![Hemsidan](caregories.png)
+![Hemsidan](products.png)
+![Hemsidan](cart.png)
 
 ## Saker som gick bra
-- Det mesta som involverade javascript gick bra, men något som jag inte kunda väldigt bra men ändå gick hyffsat var css. Det hade dock gått ännu bättre om jag hade bättre planering.
+- Det mesta som involverade javascript gick bra, men något som jag inte kunde väldigt bra men ändå gick hyfsat var css. Det hade dock gått ännu bättre om jag hade bättre planering.
 
 ## Saker som gick dåligt
 - Jag gillar inte att planera så jag gjorde knappt det
